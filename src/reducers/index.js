@@ -1,4 +1,6 @@
-export const songsReducer = () => {
+import { combineReducers } from "redux";
+
+const songsReducer = () => {
   // this will be a static list of song for this app
   // return s an array of song objs
   return [  
@@ -11,9 +13,14 @@ export const songsReducer = () => {
   ];
 };
 
-export const selectedSongReducer = (selectedSong = null, action) => {
+const selectedSongReducer = (selectedSong = null, action) => {
   if (action.type === 'SONG_SELECTED') { 
     return action.payload;
   }  
   return selectedSong;
-}
+};
+
+export default combineReducers({
+  songs: songsReducer,
+  selectedSong: selectedSongReducer
+});
